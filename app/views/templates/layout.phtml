@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title><?= $title ?></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Page - Social Places">
+    <link rel="stylesheet" href="/assets/css/pure-min.css">
+    <link rel="stylesheet" href="/assets/css/theme.css?ver=001">
+    <link href="/assets/css/basscss.min.css" rel="stylesheet">
+    <link href="/assets/css/dataTables.min.css" rel="stylesheet">
+    <script src="/assets/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="/assets/js/dataTables.min.js"></script>
+    <script type="text/javascript" src="/assets/js/ui.js"></script>
+</head>
+
+<body>
+    <div id="layout">
+        <!-- Menu toggle -->
+        <span id="menugroup">
+            <span id="menuLink" class="menu-link">
+                <!-- Hamburger icon -->
+                <span id="hamburger"></span>
+            </span>
+
+            <div id="menu">
+                <div class="pure-menu">
+                    <span class="pure-menu-heading"><a class="black text-decoration-none" href="/"><?= PROJECT_NAME ?></a></span>
+
+                    <ul class="pure-menu-list">
+                    <li class="pure-menu-item"><a class="pure-menu-link" href="/admin">Admin</a></li>
+                    <?php if(isset($container_user) && $container_user != null){ ?>
+                        <li class="pure-menu-item"><a class="pure-menu-link red" href="/signout">Sign Out</a></li>
+                    <?php } ?>
+                    </ul>
+                </div>
+            </div>
+        </span>
+        <div id="main">
+            <div class="header" id="header">
+                <h2><?= $title ?></h2>
+            </div>
+
+            <div id="content" class="content center">
+                <?= $content ?>
+            </div>
+            <div class="footer" id="footer">
+                <h2 class="content-subhead">&copy; <?= date("Y") ?></h2>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    window.onload = (event) => {
+        menuHighlight();
+    };
+</script>

@@ -1,0 +1,466 @@
+body {
+    color: #777;
+}
+
+.pure-img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/*
+Add transition to containers so they can push in and out.
+*/
+
+#layout,
+#menu,
+.menu-link {
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+
+/*
+This is the parent `<div>` that contains the menu and the content area.
+*/
+
+#layout {
+    position: relative;
+    left: 0;
+    padding-left: 0;
+}
+
+#layout.active #menu {
+    left: 150px;
+    width: 150px;
+}
+
+#layout.active .menu-link {
+    left: 150px;
+}
+
+
+/*
+The content `<div>` is where all your content goes.
+*/
+
+.content {
+    margin: 0 auto;
+    padding: 0 2em;
+    margin-bottom: 50px;
+    line-height: 1.6em;
+}
+
+.header,
+.footer {
+    margin: 0;
+    color: #333;
+    text-align: center;
+    padding: 2.5em 2em 0;
+}
+
+.header h1 {
+    margin: 0.2em 0;
+    font-size: 3em;
+    font-weight: 300;
+}
+
+.header h2 {
+    font-weight: 300;
+    color: #ccc;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.content-subhead {
+    margin: 50px 0 20px 0;
+    font-weight: 300;
+    color: #888;
+}
+
+
+/*
+The `#menu` `<div>` is the parent `<div>` that contains the `.pure-menu` that
+appears on the left side of the page.
+*/
+
+#menu {
+    margin-left: -150px;
+    /* "#menu" width */
+    width: 150px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    /* so the menu or its navicon stays above all content */
+    background: #191818;
+    overflow-y: auto;
+}
+
+
+/*
+    All anchors inside the menu should be styled like this.
+    */
+
+#menu a {
+    color: rgb(245, 245, 245);
+    border: none;
+}
+
+
+/*
+    Remove all background/borders, since we are applying them to #menu.
+    */
+
+#menu .pure-menu,
+#menu .pure-menu ul {
+    border: none;
+    background: transparent;
+}
+
+
+/*
+    Add that light border to separate items into groups.
+    */
+
+#menu .pure-menu ul,
+#menu .pure-menu .menu-item-divided {
+    border-top: 1px solid #333;
+}
+
+
+/*
+        Change color of the anchor links on hover/focus.
+        */
+
+#menu .pure-menu li a:hover,
+#menu .pure-menu li a:focus {
+    background: #333;
+}
+
+
+/*
+    This styles the selected menu item `<li>`.
+    */
+
+#menu .pure-menu-selected,
+#menu .pure-menu-heading {
+    background: #69a9d3;
+}
+
+
+/*
+        This styles a link within a selected menu item `<li>`.
+        */
+
+#menu .pure-menu-selected a {
+    color: #fff;
+}
+
+
+/*
+    This styles the menu heading.
+    *
+
+f f #menu .pure-menu-heading {
+    font-size: 110%;
+    color: #fff;
+    margin: 0;
+    padding: 5px;
+}
+
+
+/* -- Dynamic Button For Responsive Menu -------------------------------------*/
+
+
+/*
+The button to open/close the Menu is custom-made and not part of Pure. Here's
+how it works:
+*/
+
+
+/*
+`.menu-link` represents the responsive menu toggle that shows/hides on
+small screens.
+*/
+
+.menu-link {
+    position: fixed;
+    display: block;
+    /* show this only on small screens */
+    top: 0;
+    left: 0;
+    /* "#menu width" */
+    background: #000;
+    background: rgba(0, 0, 0, 0.7);
+    font-size: 10px;
+    /* change this value to increase/decrease button size */
+    z-index: 10;
+    width: 2em;
+    height: auto;
+    padding: 2.1em 1.6em;
+}
+
+.menu-link:hover,
+.menu-link:focus {
+    background: #000;
+}
+
+.menu-link span {
+    position: relative;
+    display: block;
+}
+
+.menu-link span,
+.menu-link span:before,
+.menu-link span:after {
+    background-color: #fff;
+    pointer-events: none;
+    width: 100%;
+    height: 0.2em;
+}
+
+.menu-link span:before,
+.menu-link span:after {
+    position: absolute;
+    margin-top: -0.6em;
+    content: " ";
+}
+
+.menu-link span:after {
+    margin-top: 0.6em;
+}
+
+
+/* -- Responsive Styles (Media Queries) ------------------------------------- */
+
+
+/*
+Hides the menu at `48em`, but modify this based on your app's needs.
+*/
+
+@media (min-width: 48em) {
+    .header,
+    .content {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+    #layout {
+        padding-left: 150px;
+        /* left col width "#menu" */
+        left: 0;
+    }
+    #menu {
+        left: 150px;
+    }
+    .menu-link {
+        position: fixed;
+        left: 150px;
+        display: none;
+    }
+    #layout.active .menu-link {
+        left: 150px;
+    }
+}
+
+@media (max-width: 48em) {
+    /* Only apply this when the window is small. Otherwise, the following
+    case results in extra padding on the left:
+        * Make the window small.
+        * Tap the menu to trigger the active state.
+        * Make the window large again.
+    */
+    #layout.active {
+        position: relative;
+        left: 150px;
+    }
+}
+
+.is-center {
+    text-align: center;
+}
+
+input {
+    margin: 10px!important;
+}
+
+.show {
+    display: block!important;
+}
+
+.hide {
+    display: none!important;
+}
+
+.show:target {
+    display: block!important;
+}
+
+.hide:target {
+    display: none!important;
+}
+
+.red {
+    color: rgb(145, 41, 41)!important;
+}
+
+.green {
+    color: rgb(27, 116, 27)!important;
+}
+
+.blue {
+    color: rgb(98, 98, 240)!important;
+}
+
+.grey {
+    color: rgb(172, 160, 160)!important;
+}
+
+.black {
+    color: rgb(8, 8, 8)!important;
+}
+
+.translucent-form-overlay {
+    position: fixed;
+    top: 12%;
+    max-width: 500px;
+    background-color: rgba(67, 82, 95);
+    z-index: 99;
+    display: none;
+}
+
+.width-mobile-table {
+    width: 20%;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    table-layout: fixed;
+}
+
+.width-mobile-table td {
+    inline-size: 100px;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.translucent-form-overlay .columns.row {
+    display: block;
+}
+
+.translucent-form-overlay h3,
+.translucent-form-overlay label,
+.translucent-form-overlay legend {
+    color: #fefefe;
+}
+
+.translucent-form-overlay .pure-form-message {
+    color: #fefefe;
+}
+
+.translucent-form-overlay input,
+.translucent-form-overlay select {
+    color: #8a8a8a;
+}
+
+.translucent-form-overlay input::-webkit-input-placeholder {
+    color: #8a8a8a;
+}
+
+.translucent-form-overlay input:-ms-input-placeholder {
+    color: #8a8a8a;
+}
+
+.translucent-form-overlay input::placeholder {
+    color: #8a8a8a;
+}
+
+.modal {
+    display: none;
+    top: 0;
+}
+
+.modal.is-open {
+    display: block;
+}
+
+body {
+    font-family: Arial;
+}
+
+
+/* Style the tab */
+
+.tab {
+    overflow: hidden;
+    max-width: 725px;
+}
+
+
+/* Style the buttons inside the tab */
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+
+/* Change background color of buttons on hover */
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+
+/* Create an active/current tablink class */
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+
+/* Style the tab content */
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+    max-width: 700px;
+}
+
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+    background: rgb(28, 184, 65);
+    /* this is a green */
+}
+
+.button-error {
+    background: rgb(202, 60, 60);
+    /* this is a maroon */
+}
+
+.button-warning {
+    background: rgb(223, 117, 20);
+    /* this is an orange */
+}
+
+.button-secondary {
+    background: rgb(66, 184, 221);
+    /* this is a light blue */
+}

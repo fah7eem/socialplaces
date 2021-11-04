@@ -1,0 +1,18 @@
+#!/usr/bin/php 
+<?php
+require_once __DIR__ . '/../app/config.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../app/initialize/startup.php';
+
+use System\Migrate;
+use Monolog\Logger;
+use Monolog\Handler\DBLogger;
+try {
+    $migrate = new Migrate();
+    $migrate->create_table();
+    $migrate->run();
+} catch (Exception $e) {
+    $logger = new Logger('migrate');
+    $logger->pushHandler(new DBLogger("app_logs", Logger::ERROR));
+    $logger->error($e->getMessage());
+}

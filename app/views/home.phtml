@@ -1,0 +1,70 @@
+<div class="mx-auto" id="contactForm">
+<form action="/contact/submit"  method="post" class="pure-form mx-auto">
+        <input type="text" id="name" minlength='4' name="name" placeholder="Name" /><br>
+        <input type="email" id="email" minlength='4' name="email" placeholder="Email" /><br>
+        <select id="gender" name="gender">
+            <option disabled selected value="none">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other" >Other</option>
+        </select><br>
+        <input class="display-none" id="other" type="text" minlength='1' name="other" placeholder="Specify Gender" /><br><br>
+        <textarea rows="5"id="message" minlength='14' name="content" placeholder="Content Messsage"></textarea><br><br>
+
+    <button id="contactFormButton" name="contactFormButton" class="pure-button button-success" disabled>Add</button>
+</form>
+</div>
+<script>
+    $('select').on('change', function() {
+        if(this.value == "Other"){
+            $("#other").removeClass("display-none");
+        }else{
+            $("#other").addClass("display-none");
+        }
+});
+
+$('#contactForm form :input , #contactForm form select ,#contactForm form textarea').on('input', 
+function(){
+       name = $("#name").val().length;
+       email = $("#email").val().length;
+       gender = $("#gender").val();
+       other  = $("#other").val().length;
+       content = $("#message").val().length;
+       genders = ["Male", "Female"];
+       if(gender == "Other"){
+        if(name > 0 && email > 0 && gender == "Other" && other > 0 && content > 0 ){
+            $('#contactFormButton').prop('disabled', false);
+        }else{
+            $('#contactFormButton').prop('disabled', true);
+        }
+       }else{
+        if(name > 0 && email > 0 && genders.includes(gender) && content > 0 ){
+            $('#contactFormButton').prop('disabled', false);
+        }else{
+            $('#contactFormButton').prop('disabled', true);
+        }
+       }
+}
+);
+
+$("#contactForm form").submit(function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var url = form.attr('action');
+        $.ajax({
+        type: "POST",
+        url: url,
+        data: form.serialize(),
+        success: function(data)
+        {
+            console.log(data);
+            $("#name").val("");
+            $("#email").val("");
+            $("#gender").val("none");
+            $("#other").val("");
+            $("#message").val("");
+        }
+        });
+    });
+
+</script>

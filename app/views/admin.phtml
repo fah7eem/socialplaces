@@ -1,0 +1,45 @@
+<select id="filter" name="gender">
+            <option disabled selected value="">FILTER GENDER</option>
+            <?php foreach($filters as $filter){?>
+                <option value="<?=$filter?>"><?=$filter?></option>
+            <?php } ?>
+</select><br>
+<table id="contact" class="display" style="width:100%">
+<thead>
+    <th>Content</th>
+    <th>Email</th>
+    <th>Gender</th>
+    <th>Name</th>
+    <th>Time</th>
+</thead>
+</table>
+<script>
+    $(document).ready(function() {
+    $('#contact').DataTable({
+    "processing": false,
+    "serverSide": true,
+    "ajax": {
+        "url": "/admin/data",
+        "type": 'get',
+        "dataType": 'json'
+    },
+    "columns": [{
+                "data": "content"
+            }, {
+                "data": "email"
+            }, {
+                "data": "gender"
+            }, {
+                "data": "name"
+            }, {
+                "data": "time"
+            }]
+});
+} );
+
+
+$('#filter').on('change', function () {
+    $('#contact').DataTable().column(3).search($(this).val()).draw();
+});
+
+</script>
