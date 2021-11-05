@@ -6,7 +6,7 @@ Requirements:
 
                composer
                
-               mysql databse
+               mysql database
                
                make
                
