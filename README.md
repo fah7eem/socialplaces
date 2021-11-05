@@ -8,7 +8,7 @@
 
 4. Serve Porject: make serve
 
-5. Live Website: https://localhost:8081
+5. Live Website: http://localhost:8081
 
 6. Username: fseedat7@gmail.com 
 
