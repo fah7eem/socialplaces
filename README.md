@@ -1,5 +1,16 @@
 # contact-page
 
+Requirements:
+               
+               php 7.4 or greater
+
+               composer
+               
+               mysql dtatabse
+               
+               make
+               
+               
 1. Copy app/config.example.php to app/config.php
 
 2. Install package: make compose
