@@ -12,3 +12,9 @@ define('PROJECT_LINK', 'https://localhost:8081'); /** Required for install examp
 define('SHOW_ERRORS', true);
 define('MIGRATE_PATH', 'Path  to folder'); /** Required for install (full path to database folder) must have forward slash at end */
 define('MIGRATE_PATH_DELETE', false);
+
+define('MAIL_NAME',''); /** Required */
+define('MAIL_FROM',''); /** Required */
+define('MAIL_PASS',''); /** Required */
+define('MAIL_SMTP',''); /** Required */
+define('MAIL_PORT',''); /** Required */
