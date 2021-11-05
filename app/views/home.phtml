@@ -57,12 +57,18 @@ $("#contactForm form").submit(function(e) {
         data: form.serialize(),
         success: function(data)
         {
-            console.log(data);
-            $("#name").val("");
-            $("#email").val("");
-            $("#gender").val("none");
-            $("#other").val("");
-            $("#message").val("");
+            if(data.result == "Success"){
+                $("#name").val("");
+                $("#email").val("");
+                $("#gender").val("none");
+                $("#other").val("");
+                $("#message").val("");
+                $('#contactFormButton').prop('disabled', true);
+                alert("Contact form Completed");
+            }else{
+                alert("Unable to complete")
+            }
+
         }
         });
     });
