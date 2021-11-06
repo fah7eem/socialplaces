@@ -10,6 +10,8 @@ class Data extends Database{
     }
 
     public function get($start, $length, $search, $filter){
+        $search = $this->clean_inputs($search);
+        $filter = $this->clean_inputs($filter);
         $search_terms = "where 1 = 1 ";
         $searchStatus = false;
         if(!empty($filter)){
@@ -25,6 +27,8 @@ class Data extends Database{
     }
 
     public function get_total($search, $filter){
+        $search = $this->clean_inputs($search);
+        $filter = $this->clean_inputs($filter);
         $search_terms = "where 1 = 1";
         $searchStatus = false;
         if(!empty($filter)){
